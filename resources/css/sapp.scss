@@ -1,0 +1,6 @@
+$box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+$box-shadow-sm: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+$box-shadow-lg: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+/* $border-color: transparent; */
+$enable-important-utilities: true;
+@import 'bootstrap/scss/bootstrap';

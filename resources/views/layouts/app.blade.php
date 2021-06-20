@@ -13,7 +13,13 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
+        <link rel="stylesheet" href="{{ mix('css/sapp.css') }}">
+        <link rel="stylesheet" href="{{ mix('css/custom.css') }}">
+
         @livewireStyles
+
+        <!-- CSS only -->
+        @stack('css')
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
@@ -27,14 +33,14 @@
             <!-- Page Heading -->
             @if (isset($header))
                 <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    <div class="container-xl container-fluid py-6">
                         {{ $header }}
                     </div>
                 </header>
             @endif
 
             <!-- Page Content -->
-            <main>
+            <main class="container-xl container-fluid">
                 {{ $slot }}
             </main>
         </div>
@@ -42,5 +48,7 @@
         @stack('modals')
 
         @livewireScripts
+
+        @stack('js')
     </body>
 </html>
