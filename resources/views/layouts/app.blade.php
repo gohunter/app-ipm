@@ -32,7 +32,7 @@
 
             <!-- Page Heading -->
             @if (isset($header))
-                <header class="bg-white shadow">
+                <header class="bg-white shadow-sm mb-12">
                     <div class="container-xl container-fluid py-6">
                         {{ $header }}
                     </div>

@@ -20,9 +20,9 @@ class CreateDocumentsTable extends Migration
             $table->string('student_name');
             $table->string('course_name');
             $table->date('course_enddate')->nullable();
-            $table->string('qr_image')->comment('archivo de QR generado');
-            $table->string('qr_url')->comment('url usado en QR generado (host/doc/uuid)');
-            $table->string('qr_file')->comment('archivo subido en formato PDF');
+            $table->string('qr_image')->nullable()->comment('archivo de QR generado');
+            $table->string('qr_url')->nullable()->comment('url usado en QR generado (host/doc/uuid)');
+            $table->string('qr_file')->nullable()->comment('archivo subido en formato PDF');
             $table->boolean('status')->comment('0: No publicado, 1: Publicado')->default(false);
             $table->timestamps();
         });
