@@ -28,3 +28,6 @@ Route::get('/config', IndexConfig::class)->name('config.index')->middleware(['au
 Route::get('/documentos', IndexDocument::class)->name('document.index')->middleware(['auth:sanctum', 'verified']);
 
 Route::get('/documentos/qr/download/{document}', [DocumentController::class, 'qrDownload'])->name('document.qrdownload')->middleware(['auth:sanctum', 'verified']);
+Route::get('/documentos/doc/{uuid}', [DocumentController::class, 'pdfDownload'])->name('document.pdfdownload');
+Route::get('/documentos/vdoc/{uuid}', [DocumentController::class, 'vpdfDownload'])->name('document.vpdfdownload')->middleware(['auth:sanctum', 'verified']);
+// https://documento.ipm.com.pe/doc/93bf6001-c766-47cc-b858-248963abde80

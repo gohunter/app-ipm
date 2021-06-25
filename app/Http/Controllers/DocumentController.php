@@ -20,4 +20,22 @@ class DocumentController extends Controller
         // si se hace la búsqueda por uuid y no se encuentra el resulado usar abort(404);
         return Storage::download("documents/{$document->qr_image}");
     }
+
+    public function pdfDownload($uuid)
+    {
+        $document = Document::where("uuid", $uuid)->where("status", true)->first();
+        if ($document && Storage::exists($document->qr_file)) {
+            return Storage::response($document->qr_file);
+        }
+        abort(404);
+    }
+
+    public function vpdfDownload($uuid)
+    {
+        $document = Document::where("uuid", $uuid)->first();
+        if ($document && Storage::exists($document->qr_file)) {
+            return Storage::response($document->qr_file);
+        }
+        abort(404);
+    }
 }

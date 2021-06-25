@@ -26,9 +26,19 @@ class Document extends Model
 
     protected $hidden = [];
 
+    public function setStudentCodeAttribute($value)
+    {
+        $this->attributes['student_code'] = trim($value);
+    }
+
     public function setStudentNameAttribute($value)
     {
         $this->attributes['student_name'] = trim($value);
+    }
+
+    public function setCourseNameAttribute($value)
+    {
+        $this->attributes['course_name'] = trim($value);
     }
 
     public function getCourseEnddatePeAttribute()

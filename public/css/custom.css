@@ -48,3 +48,74 @@ a {
   background-size: contain;
 }
 
+.titulo-estudiante {
+  /* min-height: 40px; */
+  font-size: 12px;
+  line-height: 120%;
+  min-width: 200px;
+}
+
+.titulo-estudiante .label {
+  font-weight: 700;
+  /* display: block; */
+  color: #0056A9;
+  text-transform: uppercase;
+  /* font-size: 10px; */
+  letter-spacing: 1px;
+  line-height: 90%;
+}
+
+.titulo-dni {
+  margin-bottom: 0.25rem;
+  min-height: 0px;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+/* .titulo-dni .label {
+    display: inline-block;
+}
+ */
+
+.titulo-curso {
+  /* min-height: 60px; */
+}
+
+.titulo-fecha {
+  margin-bottom: 0.25rem;
+  min-height: 0px;
+  font-size: 12px;
+}
+
+/* .titulo-fecha .label {
+    @apply text-right;
+}
+ */
+
+progress {
+  background-color: #f3f3f3;
+  border: 0;
+  width: 100%;
+  height: 10px;
+  border-radius: 9px;
+}
+
+progress::-webkit-progress-bar {
+  background-color: #f3f3f3;
+  border-radius: 9px;
+}
+
+progress::-webkit-progress-value {
+  background: #cdeb8e;
+  background: linear-gradient(to bottom, #cdeb8e 0%, #a5c956 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cdeb8e', endColorstr='#a5c956', GradientType=0);
+  border-radius: 9px;
+}
+
+progress::-moz-progress-bar {
+  background: #cdeb8e;
+  background: linear-gradient(to bottom, #cdeb8e 0%, #a5c956 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cdeb8e', endColorstr='#a5c956', GradientType=0);
+  border-radius: 9px;
+}
+

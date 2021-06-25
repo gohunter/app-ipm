@@ -7,70 +7,137 @@
         </x-slot>
         <x-card-table>
             <div class="px-6 py-4 flex items-center">
-                <input type="text" class="form-control flex-1 mr-4" placeholder="Buscar..."
+                <input type="text" class="form-control flex-1 mr-4" placeholder="Buscar por estudiante..."
                     wire:model.debounce.750ms="txt_buscar">
+                <input type="text" class="form-control flex-1 mr-4" placeholder="Buscar por curso..."
+                    wire:model.debounce.750ms="txt_curso">
+                <div class="flex items-center">
+                    <select class="form-select mr-4" aria-label="Seleccionar" wire:model="txt_status">
+                        <option value="">Todos los estados</option>
+                        @foreach ($list_status as $key => $value)
+                        <option value="{{ $key }}">{{ $value }}</option>
+                        @endforeach
+                    </select>
+                </div>
                 @livewire('document.create-document')
             </div>
-            <div class="px-6">
-                <div class="row row-cols-2 row-cols-sm-3 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 gx-2 gy-2">
-                    @foreach ($documents as $item)
-                    <div class="col d-flex">
-                        <div class="card h-100">
-                            <div class="relative">
-                                <img width="100%" class="card-img-top"
-                                    src="{{ asset('storage/documents/'.$item->qr_image) }}" />
-                                <div class="absolute bottom-1 right-1">
-                                    <a target="_blank" class="btn btn-dark btn-sm"
-                                        href="{{ route('document.qrdownload', $item->id) }}">
-                                        <i class="bi bi-cloud-download"></i>
-                                    </a>
+            <div class="table-responsive">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <colgroup>
+                        <col width="20px" />
+                        <col width="100px" />
+                        <col width="320px" />
+                        <col width="320px" />
+                        <col width="50px" />
+                    </colgroup>
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col"
+                                class="pl-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                N°
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                QR
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Estudiante
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Curso
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Estado
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Acciones
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        @foreach ($documents as $key => $item)
+                        <tr>
+                            <td class="pl-6 py-4">
+                                <div class="text-xs font-medium text-gray-900">
+                                    {{ $documents->firstItem() + $key }}
                                 </div>
-                            </div>
-                            <div class="card-body">
-                                <h6 class="card-subtitle mb-1 text-xs text-gray-900">
-                                    <b>DNI:</b> {{ $item->student_code }}
+                            </td>
+                            <td class="pl-6 py-1">
+                                <img width="100%" src="{{ asset('storage/documents/'.$item->qr_image) }}" />
+                            </td>
+                            <td class="pl-6 py-1">
+                                <h6 class="card-subtitle titulo-estudiante titulo-dni">
+                                    <span class="label">DNI:</span>
+                                    <span class="valor">{{ $item->student_code }}</span>
                                 </h6>
-                                <h5 class="card-title">{{ $item->student_name }}</h5>
-                                <p class="card-text"><b>Curso:</b> {{ $item->course_name }}</p>
-                                {{ $item->course_enddate_pe }}
-                                {{-- <blockquote class="blockquote mb-0">
-                                    <p class="card-text"><b>Curso:</b> {{ $item->course_name }}</p>
-                                <footer class="blockquote-footer">Finalizó en <cite
-                                        title="Source Title">{{ $item->course_enddate }}</cite></footer>
-                                </blockquote> --}}
-                            </div>
-                            {{-- <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Curso:</li>
-                                <li class="list-group-item">{{ $item->course_name }}</li>
-                            <li class="list-group-item">A third item</li>
-                            </ul> --}}
-                            <div class="card-footer">
-                                <small class="text-muted">Last updated 3 mins ago</small>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
+                                <h5 class="titulo-estudiante mb-0">
+                                    {{-- <span class="label">Estudiante:</span> --}}
+                                    <span class="valor text-uppercase">{{ $item->student_name }}</span>
+                                </h5>
+                            </td>
+                            <td class="pl-6 py-1">
+                                <p class="titulo-estudiante titulo-curso mb-1">
+                                    {{-- <span class="label">Curso:</span> --}}
+                                    <span class="valor text-uppercase tracking-tight">{{ $item->course_name }}</span>
+                                </p>
+                                <p class="titulo-estudiante titulo-fecha mb-0">
+                                    <span class="label">Finalizó:</span>
+                                    <span class="valor text-uppercase">{{ $item->course_enddate_pe }}</span>
+                                </p>
+                            </td>
+                            <td class="pl-6 py-1 whitespace-nowrap">
+                                @if ($item->status === 1)
+                                <span
+                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                    Publicado
+                                </span>
+                                @else
+                                <span
+                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                    Sin publicar
+                                </span>
+                                @endif
+                            </td>
+                            <td class="pl-6 py-1 text-sm font-medium whitespace-nowrap">
+                                <a target="_blank" class="btn btn-outline-dark btn-sm" title="Descargar QR"
+                                    href="{{ route('document.qrdownload', $item->id) }}">
+                                    <i class="bi bi-cloud-download"></i>
+                                </a>
+                                @if ($item->qr_file)
+                                <a target="_blank" class="btn btn-outline-success btn-sm" title="Descargar PDF"
+                                    href="{{ route('document.vpdfdownload', $item->uuid) }}">
+                                    <i class="bi bi-file-earmark-pdf"></i>
+                                </a>
+                                @endif
+                                <button class="btn btn-outline-primary btn-sm" title="Editar"
+                                    wire:click.prevent="$emit('listener.document.edit', {{ $item->id }})">
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+                                <button class="btn btn-outline-danger btn-sm" title="Eliminar"
+                                    wire:click.prevent="$emit('listener.document.delete', {{ $item }})">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
             @if ($documents->hasPages())
             <div class="px-6 py-2 custom-pagination">
                 {{ $documents->links() }}
             </div>
             @endif
-            {{-- <ul>
-                @foreach ($documents as $item)
-                <li>
-                    {{ $item->student_name }}
-            <img width="100%" src="{{ asset('storage/documents/'.$item->qr_image) }}" />
-            </li>
-            @endforeach
-            </ul> --}}
-            <pre>@json($documents, JSON_PRETTY_PRINT)</pre>
         </x-card-table>
-
-        {{-- <img src="{{ asset('images/logoqr-ipm.png') }}" alt="">
-        <img src="{{ Storage::url('documents/' . 'logoqr-ipm.png') }}" /> --}}
-        {{-- <img src="{{ Storage::url('documents/93bc1d38-0daf-4dc9-bff0-6b30e903d1da.svg') }}" />
-        <img src="{{ URL::asset('storage/documents/93bc1d38-0daf-4dc9-bff0-6b30e903d1da.svg') }}" alt="" title=""> --}}
+        <div wire:loading>
+            <x-spinner></x-spinner>
+        </div>
     </div>
+
+    @livewire('document.edit-document')
+    @livewire('document.delete-document')
 </div>
