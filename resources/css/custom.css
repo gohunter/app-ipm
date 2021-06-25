@@ -97,6 +97,9 @@ a {
 }
  */
 
+.profile-forms .profile-item.mt-5{
+    margin-top: 0px !important;
+}
 
 progress {
     background-color: #f3f3f3;

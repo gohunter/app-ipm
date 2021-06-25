@@ -7,15 +7,16 @@
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-jet-application-mark class="block h-9 w-auto" />
+                        {{-- <x-jet-application-mark class="block h-9 w-auto" /> --}}
+                        <img class="block h-10 w-auto" src="{{ asset('images/logo-ipm.png') }}" alt="IPM" style="height: 60px;"/>
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="list-options hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                    {{-- <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Inicio') }}
-                    </x-jet-nav-link>
+                    </x-jet-nav-link> --}}
                     <x-jet-nav-link href="{{ route('document.index') }}" :active="request()->routeIs('document.index')">
                         {{ __('Documentos') }}
                     </x-jet-nav-link>
@@ -142,9 +143,9 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+            {{-- <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Inicio') }}
-            </x-jet-responsive-nav-link>
+            </x-jet-responsive-nav-link> --}}
             <x-jet-responsive-nav-link href="{{ route('document.index') }}" :active="request()->routeIs('document.index')">
                 {{ __('Documentos') }}
             </x-jet-responsive-nav-link>

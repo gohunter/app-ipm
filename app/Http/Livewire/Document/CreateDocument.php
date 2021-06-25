@@ -43,7 +43,9 @@ class CreateDocument extends Component
         $result = $response->json();
         if (isset($result['imageUrl']) && $result['imageUrl']) {
             $qr_image = "{$uuid}.svg";
-            Storage::put("documents/" . $qr_image, file_get_contents('https:' . $result['imageUrl']));
+            $qr_link  = 'https:' . $result['imageUrl'];
+            Storage::put("documents/" . $qr_image, file_get_contents($qr_link));
+            $this->document->qr_link  = $qr_link;
             $this->document->qr_image = $qr_image;
         }
 

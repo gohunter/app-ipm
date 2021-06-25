@@ -21,7 +21,8 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+    //return view('dashboard');
+    return redirect('/documentos');
 })->name('dashboard');
 
 Route::get('/config', IndexConfig::class)->name('config.index')->middleware(['auth:sanctum', 'verified']);

@@ -19,6 +19,7 @@ class Document extends Model
         'course_name',
         'course_enddate',
         'qr_image',
+        'qr_link',
         'qr_url',
         'qr_file',
         'status'
