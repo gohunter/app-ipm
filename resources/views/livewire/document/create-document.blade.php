@@ -46,7 +46,7 @@
                                     <div class="form-floating">
                                         <input type="date" class="form-control" maxlength="200" minlength="2"
                                             wire:model.defer="document.course_enddate" required />
-                                        <x-form-label model="document.course_enddate" required="true">
+                                        <x-form-label model="document.course_enddate">
                                             Fecha de inicio del curso
                                         </x-form-label>
                                     </div>
