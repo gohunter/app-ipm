@@ -85,7 +85,7 @@
                                     <span class="valor text-uppercase tracking-tight">{{ $item->course_name }}</span>
                                 </p>
                                 <p class="titulo-estudiante titulo-fecha mb-0">
-                                    <span class="label">Finalizó:</span>
+                                    <span class="label">Inició:</span>
                                     <span class="valor text-uppercase">{{ $item->course_enddate_pe }}</span>
                                 </p>
                             </td>
