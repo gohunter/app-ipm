@@ -73,7 +73,7 @@ class CreateDocument extends Component
             'document.student_code'   => 'DNI',
             'document.student_name'   => 'Estudiante',
             'document.course_name'    => 'Curso',
-            'document.course_enddate' => 'Fecha de finalzación del curso'
+            'document.course_enddate' => 'Fecha de inicio del curso'
         ];
     }
 }
